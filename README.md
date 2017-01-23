@@ -12,11 +12,15 @@ or
 
 ## Running the Image
 
-    docker run -d -p 8081:8081/tcp -p 53:53/udp -p 53:52/tcp pdns
+    docker run -d -p 8001:8001/tcp -p 53:53/udp -p 53:53/tcp pdns
 
 To start a shell session inside the container:
 
     docker exec -it <CONTAINER-ID> /bin/bash
+
+## Running the Image using Docker Compose
+
+    docker-compose up
 
 ## Configuring a Zone
 

@@ -7,8 +7,6 @@ EXPOSE 53/udp
 EXPOSE 53/tcp
 EXPOSE 8001/tcp
 
-ENV PDNS_WEBSERVER_PASSWORD aUqg6aTS
-
 VOLUME ["/srv/pdns"]
 
 RUN curl -o /etc/yum.repos.d/powerdns-auth-40.repo https://repo.powerdns.com/repo-files/centos-auth-40.repo && \
