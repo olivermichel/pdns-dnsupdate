@@ -18,9 +18,17 @@ To start a shell session inside the container:
 
     docker exec -it <CONTAINER-ID> /bin/bash
 
-## Running the Image using Docker Compose
+## PowerDNS Configuration
 
-    docker-compose up
+The following environment variables can be set:
+
+* `PDNS_HTTP_PORT`
+* `PDNS_API_KEY`
+* `PDNS_HTTP_PW`
+
+When running the container, environment variables can be set like this:
+
+    docker run -d -e PDNS_HTTP_PW=test -p 8001:8001/tcp -p 53:53/udp -p 53:53/tcp pdns
 
 ## Configuring a Zone
 
@@ -34,7 +42,9 @@ To test your setup, run from the Docker host machine:
 
     dig +noall +answer newhost.example.com @127.0.0.1
 
-## Configuring DNS UPDATE
+## DNS UPDATE
+
+### Configuration
 
 In order to use DNS UPDATE securely, a shared secret must be configured. To do so, execute the following command inside the container:
 
@@ -49,7 +59,7 @@ You can then retrieve the generated key using:
 
     pdnsutil list-tsig-keys
 
-## Sending an Update Request
+### Sending an Update Request
 
 Use the `nsupdate` tool to send DNS UPDATE requests:
 
@@ -62,3 +72,7 @@ Then, in order to set the IP address for newhost to 172.16.0.1, type
     update add newhost.example.com 500 IN A 172.16.0.1
     send
     quit
+
+## PDNS API
+
+Information about the API can be found [here](https://doc.powerdns.com/md/httpapi/README/).

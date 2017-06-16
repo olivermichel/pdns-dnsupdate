@@ -1,8 +1,0 @@
-version: '2'
-services:
-  dns:
-    build: .
-    ports:
-      - "53/udp:53/udp"
-      - "53/tcp:53/tcp"
-      - "8001/tcp:8001/tcp"
