@@ -1,4 +1,7 @@
-all: Dockerfile assets/pdns.conf assets/schema.sql
+build: Dockerfile assets/entrypoint.sh assets/schema.sql
 	docker build -t olivermichel/pdns-dnsupdate .
 
-.PHONY: all
+push:
+	docker push olivermichel/pdns-dnsupdate
+
+.PHONY: build push

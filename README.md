@@ -1,10 +1,10 @@
-# PowerDNS 4.0 with NS-Update
+# PowerDNS with DNS-Update
 
-This repository provides a PowerDNS 4.0 authorative DNS server installation with support for DNS UPDATE ([RFC 2136](https://tools.ietf.org/html/rfc2136) and [RFC 3007](https://tools.ietf.org/html/rfc3007)) configured.
+This repository provides a PowerDNS authorative DNS server installation with support for DNS UPDATE ([RFC 2136](https://tools.ietf.org/html/rfc2136) and [RFC 3007](https://tools.ietf.org/html/rfc3007)) configured.
 
 ## Building the Image
 
-    docker build -t pdns .
+    docker build -t pdns-dnsupdate .
 
 or
 
@@ -12,7 +12,7 @@ or
 
 ## Running the Image
 
-    docker run -d -p 8001:8001/tcp -p 53:53/udp -p 53:53/tcp pdns
+    docker run -d -p 42902:42902/tcp -p 53:53/udp -p 53:53/tcp pdns-dnsupdate
 
 To start a shell session inside the container:
 
@@ -22,13 +22,15 @@ To start a shell session inside the container:
 
 The following environment variables can be set:
 
-* `PDNS_HTTP_PORT`
+* `PDNS_API`
 * `PDNS_API_KEY`
-* `PDNS_HTTP_PW`
+* `PDNS_WEBSERVER_ADDRESS`
+* `PDNS_WEBSERVER_PORT`
+* `PDNS_WEBSERVER_ALLOW_FROM`
 
 When running the container, environment variables can be set like this:
 
-    docker run -d -e PDNS_HTTP_PW=test -p 8001:8001/tcp -p 53:53/udp -p 53:53/tcp pdns
+    docker run -d -e PDNS_API_KEY=test -p 42902:42902/tcp -p 53:53/udp -p 53:53/tcp pdns
 
 ## Configuring a Zone
 

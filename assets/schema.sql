@@ -1,4 +1,3 @@
-
 PRAGMA foreign_keys = 1;
 
 CREATE TABLE domains (
